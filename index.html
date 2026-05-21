@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Arché — Selected Pieces</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+		rel="stylesheet">
+	<style>
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		:root {
+			--cream: #F7F4EF;
+			--sand: #E8E2D9;
+			--stone: #C8BFB0;
+			--bark: #8A7A6A;
+			--espresso: #2C2420;
+			--soft-black: #1A1614;
+			--accent: #6B5E52;
+			--white: #FDFCFB;
+			--success: #3D6B4F;
+			--error: #8B3A3A;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			font-family: 'DM Sans', sans-serif;
+			background: var(--cream);
+			color: var(--espresso);
+			font-weight: 300;
+			min-height: 100vh;
+		}
+
+		/* NAV */
+		nav {
+			position: sticky;
+			top: 0;
+			z-index: 100;
+			background: rgba(247, 244, 239, 0.92);
+			backdrop-filter: blur(12px);
+			border-bottom: 1px solid var(--sand);
+			padding: 1rem 2rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.nav-brand {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 1.3rem;
+			font-weight: 400;
+			letter-spacing: 0.12em;
+			color: var(--soft-black);
+			text-decoration: none;
+		}
+
+		.nav-sub {
+			font-size: 0.72rem;
+			letter-spacing: 0.18em;
+			color: var(--bark);
+			text-transform: uppercase;
+		}
+
+		/* HERO */
+		.hero {
+			padding: 5rem 2rem 3rem;
+			text-align: center;
+			max-width: 640px;
+			margin: 0 auto;
+		}
+
+		.hero-eyebrow {
+			font-size: 0.72rem;
+			letter-spacing: 0.22em;
+			text-transform: uppercase;
+			color: var(--bark);
+			margin-bottom: 1.2rem;
+		}
+
+		.hero h1 {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: clamp(2.2rem, 6vw, 3.6rem);
+			font-weight: 300;
+			line-height: 1.15;
+			color: var(--soft-black);
+			margin-bottom: 1.2rem;
+		}
+
+		.hero h1 em {
+			font-style: italic;
+			font-weight: 300;
+		}
+
+		.hero p {
+			font-size: 0.95rem;
+			color: var(--bark);
+			line-height: 1.8;
+			max-width: 420px;
+			margin: 0 auto;
+		}
+
+		/* TRUST STRIP */
+		.trust-strip {
+			display: flex;
+			justify-content: center;
+			gap: 2.5rem;
+			padding: 2rem;
+			border-top: 1px solid var(--sand);
+			border-bottom: 1px solid var(--sand);
+			margin: 2rem 0;
+			flex-wrap: wrap;
+		}
+
+		.trust-item {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			font-size: 0.78rem;
+			letter-spacing: 0.08em;
+			color: var(--accent);
+			text-transform: uppercase;
+		}
+
+		.trust-dot {
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+			background: var(--stone);
+		}
+
+		/* PRODUCTS */
+		.products {
+			max-width: 1080px;
+			margin: 0 auto;
+			padding: 2rem 1.5rem 4rem;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
+		}
+
+		.product-card {
+			background: var(--white);
+			border: 1px solid var(--sand);
+			border-radius: 2px;
+			overflow: hidden;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		.product-card:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 20px 60px rgba(44, 36, 32, 0.1);
+		}
+
+		.product-info {
+			padding: 1.5rem;
+		}
+
+		.product-brand {
+			font-size: 0.7rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--bark);
+			margin-bottom: 0.4rem;
+		}
+
+		.product-name {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 1.5rem;
+			font-weight: 400;
+			color: var(--soft-black);
+			margin-bottom: 0.4rem;
+			line-height: 1.2;
+		}
+
+		.product-desc {
+			font-size: 0.85rem;
+			color: var(--bark);
+			line-height: 1.7;
+			margin-bottom: 1rem;
+		}
+
+		.product-details {
+			display: flex;
+			flex-direction: column;
+			gap: 0.3rem;
+			margin-bottom: 1.2rem;
+		}
+
+		.product-detail {
+			display: flex;
+			justify-content: space-between;
+			font-size: 0.8rem;
+			padding: 0.3rem 0;
+			border-bottom: 1px solid var(--sand);
+			color: var(--accent);
+		}
+
+		.product-detail span:last-child {
+			font-weight: 500;
+			color: var(--espresso);
+		}
+
+		.price-row {
+			display: flex;
+			align-items: baseline;
+			gap: 0.75rem;
+			margin-bottom: 1.2rem;
+		}
+
+		.price-new {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 2rem;
+			font-weight: 400;
+			color: var(--soft-black);
+		}
+
+		.price-old {
+			font-size: 0.9rem;
+			color: var(--stone);
+			text-decoration: line-through;
+		}
+
+		.price-save {
+			font-size: 0.72rem;
+			background: var(--cream);
+			color: var(--success);
+			padding: 0.2rem 0.5rem;
+			border: 1px solid rgba(61, 107, 79, 0.2);
+			letter-spacing: 0.05em;
+		}
+
+		.btn-buy {
+			display: block;
+			width: 100%;
+			padding: 1rem;
+			background: var(--espresso);
+			color: var(--cream);
+			border: none;
+			font-family: 'DM Sans', sans-serif;
+			font-size: 0.78rem;
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			cursor: pointer;
+			transition: background 0.2s ease;
+		}
+
+		.btn-buy:hover {
+			background: var(--soft-black);
+		}
+
+		/* MODAL */
+		.overlay {
+			display: none;
+			position: fixed;
+			inset: 0;
+			background: rgba(26, 22, 20, 0.7);
+			z-index: 200;
+			align-items: center;
+			justify-content: center;
+			padding: 1rem;
+		}
+
+		.overlay.active {
+			display: flex;
+		}
+
+		.modal {
+			background: var(--white);
+			width: 100%;
+			max-width: 520px;
+			max-height: 90vh;
+			overflow-y: auto;
+			border-radius: 2px;
+			position: relative;
+		}
+
+		.modal-header {
+			padding: 2rem 2rem 1.5rem;
+			border-bottom: 1px solid var(--sand);
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			position: sticky;
+			top: 0;
+			background: var(--white);
+			z-index: 1;
+		}
+
+		.modal-title {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 1.5rem;
+			font-weight: 400;
+			color: var(--soft-black);
+		}
+
+		.modal-subtitle {
+			font-size: 0.8rem;
+			color: var(--bark);
+			margin-top: 0.2rem;
+		}
+
+		.btn-close {
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: var(--bark);
+			font-size: 1.3rem;
+			line-height: 1;
+			padding: 0.2rem;
+		}
+
+		.modal-body {
+			padding: 1.5rem 2rem 2rem;
+		}
+
+		.order-summary {
+			background: var(--cream);
+			border: 1px solid var(--sand);
+			padding: 1rem 1.2rem;
+			margin-bottom: 1.5rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.order-summary-name {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 1.1rem;
+			color: var(--soft-black);
+		}
+
+		.order-summary-price {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 1.4rem;
+			font-weight: 600;
+			color: var(--soft-black);
+		}
+
+		.form-section {
+			margin-bottom: 1.5rem;
+		}
+
+		.form-section-label {
+			font-size: 0.7rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--bark);
+			margin-bottom: 0.8rem;
+			display: block;
+		}
+
+		.form-row {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 0.75rem;
+		}
+
+		.form-group {
+			margin-bottom: 0.75rem;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.form-group label {
+			font-size: 0.75rem;
+			color: var(--accent);
+			margin-bottom: 0.3rem;
+			letter-spacing: 0.04em;
+		}
+
+		.form-group input,
+		.form-group select {
+			border: 1px solid var(--sand);
+			background: var(--cream);
+			padding: 0.7rem 0.9rem;
+			font-family: 'DM Sans', sans-serif;
+			font-size: 0.9rem;
+			font-weight: 300;
+			color: var(--espresso);
+			border-radius: 0;
+			outline: none;
+			transition: border-color 0.2s;
+			-webkit-appearance: none;
+		}
+
+		.form-group input:focus,
+		.form-group select:focus {
+			border-color: var(--bark);
+		}
+
+		.divider {
+			border: none;
+			border-top: 1px solid var(--sand);
+			margin: 1.5rem 0;
+		}
+
+		.payment-methods {
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+			margin-top: 0.8rem;
+		}
+
+		.payment-option {
+			border: 1px solid var(--espresso);
+			background: var(--cream);
+			padding: 1rem 1.2rem;
+			display: flex;
+			align-items: flex-start;
+			gap: 0.8rem;
+		}
+
+		.payment-radio {
+			width: 16px;
+			height: 16px;
+			border: 1.5px solid var(--espresso);
+			border-radius: 50%;
+			margin-top: 2px;
+			flex-shrink: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.payment-dot {
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: var(--espresso);
+			display: block;
+		}
+
+		.payment-info {
+			flex: 1;
+		}
+
+		.payment-name {
+			font-size: 0.9rem;
+			font-weight: 500;
+			color: var(--soft-black);
+			margin-bottom: 0.15rem;
+		}
+
+		.payment-desc {
+			font-size: 0.78rem;
+			color: var(--bark);
+			line-height: 1.5;
+		}
+
+		.payment-detail-box {
+			display: block;
+			margin-top: 0.75rem;
+			background: var(--espresso);
+			color: var(--cream);
+			padding: 1rem 1.2rem;
+			font-size: 0.82rem;
+			line-height: 1.8;
+		}
+
+		.payment-detail-box strong {
+			font-weight: 500;
+			letter-spacing: 0.05em;
+		}
+
+		/* Sending state */
+		.btn-submit {
+			display: block;
+			width: 100%;
+			padding: 1.1rem;
+			background: var(--espresso);
+			color: var(--cream);
+			border: none;
+			font-family: 'DM Sans', sans-serif;
+			font-size: 0.8rem;
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			cursor: pointer;
+			margin-top: 1.5rem;
+			transition: background 0.2s;
+		}
+
+		.btn-submit:hover {
+			background: var(--soft-black);
+		}
+
+		.btn-submit:disabled {
+			background: var(--stone);
+			cursor: not-allowed;
+		}
+
+		.note {
+			font-size: 0.73rem;
+			color: var(--bark);
+			text-align: center;
+			margin-top: 0.75rem;
+			line-height: 1.6;
+		}
+
+		/* SUCCESS */
+		.success-screen {
+			display: none;
+			text-align: center;
+			padding: 3rem 2rem;
+		}
+
+		.success-screen.visible {
+			display: block;
+		}
+
+		.success-icon {
+			width: 48px;
+			height: 48px;
+			border: 1.5px solid var(--success);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 1.5rem;
+			color: var(--success);
+			font-size: 1.2rem;
+		}
+
+		.success-title {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 1.8rem;
+			font-weight: 400;
+			color: var(--soft-black);
+			margin-bottom: 0.75rem;
+		}
+
+		.success-text {
+			font-size: 0.88rem;
+			color: var(--bark);
+			line-height: 1.8;
+			max-width: 340px;
+			margin: 0 auto 1.5rem;
+		}
+
+		.success-box {
+			background: var(--cream);
+			border: 1px solid var(--sand);
+			padding: 1rem 1.5rem;
+			font-size: 0.82rem;
+			color: var(--accent);
+			line-height: 1.8;
+			max-width: 340px;
+			margin: 0 auto;
+			text-align: left;
+		}
+
+		/* Error banner */
+		.error-banner {
+			display: none;
+			background: #fff0f0;
+			border: 1px solid rgba(139, 58, 58, 0.3);
+			color: var(--error);
+			font-size: 0.82rem;
+			padding: 0.75rem 1rem;
+			margin-top: 0.75rem;
+			text-align: center;
+			line-height: 1.5;
+		}
+
+		.error-banner.visible {
+			display: block;
+		}
+
+		/* FOOTER */
+		footer {
+			padding: 2.5rem 2rem;
+			text-align: center;
+			border-top: 1px solid var(--sand);
+			font-size: 0.78rem;
+			color: var(--stone);
+			letter-spacing: 0.06em;
+		}
+
+		@media (max-width: 500px) {
+			nav {
+				padding: 1rem 1.2rem;
+			}
+
+			.hero {
+				padding: 3.5rem 1.2rem 2rem;
+			}
+
+			.products {
+				padding: 1rem 1rem 3rem;
+			}
+
+			.modal-header,
+			.modal-body {
+				padding-left: 1.25rem;
+				padding-right: 1.25rem;
+			}
+
+			.form-row {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		/* GALLERY */
+		.gallery-wrap {
+			position: relative;
+			background: var(--sand);
+			aspect-ratio: 3/4;
+			overflow: hidden;
+		}
+
+		.gallery-wrap .slide {
+			position: absolute;
+			inset: 0;
+			opacity: 0;
+			transition: opacity 0.4s ease;
+		}
+
+		.gallery-wrap .slide.active {
+			opacity: 1;
+			position: relative;
+		}
+
+		.gallery-thumbs {
+			display: flex;
+			gap: 6px;
+			padding: 8px 12px;
+			background: var(--white);
+			border-top: 1px solid var(--sand);
+			overflow-x: auto;
+		}
+
+		.gallery-thumbs::-webkit-scrollbar {
+			display: none;
+		}
+
+		.gallery-nav {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background: rgba(26, 22, 20, 0.45);
+			color: #fff;
+			border: none;
+			width: 32px;
+			height: 32px;
+			cursor: pointer;
+			font-size: 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 5;
+		}
+
+		.gallery-nav.prev {
+			left: 8px;
+		}
+
+		.gallery-nav.next {
+			right: 8px;
+		}
+
+		.gallery-thumbs img {
+			width: 50px;
+			height: 65px;
+			object-fit: cover;
+			cursor: pointer;
+			opacity: 0.45;
+			transition: opacity 0.2s;
+			border: 1px solid var(--sand);
+		}
+
+		.gallery-thumbs img.active {
+			opacity: 0.9;
+			border-color: var(--espresso);
+		}
+
+		.gallery-wrap .slide img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		/* Sold out state */
+		.sold-out-badge {
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			background: var(--espresso);
+			color: var(--cream);
+			font-size: 0.65rem;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			padding: 0.3rem 0.6rem;
+			z-index: 4;
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav>
+		<a class="nav-brand" href="#">Arché</a>
+		<span class="nav-sub">Selected Pieces</span>
+	</nav>
+
+	<section class="hero">
+		<p class="hero-eyebrow">Curated Collection</p>
+		<h1>Pieces worth<br><em>every penny</em></h1>
+		<p>Carefully chosen pieces in excellent condition. Shipping: +€5.50 to mainland Portugal.</p>
+	</section>
+
+	<div class="trust-strip">
+		<div class="trust-item"><span class="trust-dot"></span> Excellent condition</div>
+		<div class="trust-item"><span class="trust-dot"></span> Shipping: +€5.50</div>
+		<div class="trust-item"><span class="trust-dot"></span> Dispatched in 24–48h</div>
+		<div class="trust-item"><span class="trust-dot"></span> Secure payment</div>
+	</div>
+
+	<div class="products">
+
+		<!-- PRODUCT 1 -->
+		<div class="product-card">
+			<div class="gallery-wrap">
+				<div class="slide active" data-prod="set" data-idx="0">
+					<img src="im2.png" alt="Set - General View">
+				</div>
+				<div class="slide" data-prod="set" data-idx="1">
+					<img src="im1.png" alt="Set - Detail 1">
+				</div>
+				<div class="slide" data-prod="set" data-idx="2">
+					<img src="im3.png" alt="Set - Detail 2">
+				</div>
+				<button class="gallery-nav prev" onclick="navSlide('set', -1)">&#10094;</button>
+				<button class="gallery-nav next" onclick="navSlide('set', 1)">&#10095;</button>
+			</div>
+			<div class="gallery-thumbs">
+				<img class="thumb active" src="im1.png" onclick="setSlide('set', 0)" data-prod="set">
+				<img class="thumb" src="im2.png" onclick="setSlide('set', 1)" data-prod="set">
+				<img class="thumb" src="im3.png" onclick="setSlide('set', 2)" data-prod="set">
+			</div>
+			<div class="product-info">
+				<div class="product-brand">Zara</div>
+				<div class="product-name">Vest & Trousers Set</div>
+				<div class="product-desc">Elegant tailored set in cream tone. Fluid yet structured fabric. Perfect for
+					special occasions or an elevated everyday look.</div>
+				<div class="product-details">
+					<div class="product-detail"><span>Size</span><span>S (36)</span></div>
+					<div class="product-detail"><span>Condition</span><span>Like new (10/10)</span></div>
+					<div class="product-detail"><span>Fabric</span><span>Viscose/Wool blend</span></div>
+				</div>
+				<div class="price-row">
+					<span class="price-new">€90</span>
+					<span class="price-old">€120</span>
+					<span class="price-save">Save €30</span>
+				</div>
+				<button class="btn-buy" onclick="openModal('Vest &amp; Trousers Set', '90')">Buy This Piece</button>
+			</div>
+		</div>
+
+		<!-- PRODUCT 2 -->
+		<div class="product-card">
+			<div class="gallery-wrap">
+				<div class="slide active" data-prod="calcas" data-idx="0">
+					<img src="im1calcas.png" alt="Fluid Black Trousers">
+				</div>
+				<div class="slide" data-prod="calcas" data-idx="1">
+					<img src="im2calcas.png" alt="Fluid Black Trousers - Detail">
+				</div>
+				<button class="gallery-nav prev" onclick="navSlide('calcas', -1)">&#10094;</button>
+				<button class="gallery-nav next" onclick="navSlide('calcas', 1)">&#10095;</button>
+			</div>
+			<div class="gallery-thumbs">
+				<img class="thumb active" src="im1calcas.png" onclick="setSlide('calcas', 0)" data-prod="calcas">
+				<img class="thumb" src="im2calcas.png" onclick="setSlide('calcas', 1)" data-prod="calcas">
+			</div>
+			<div class="product-info">
+				<div class="product-brand">Massimo Dutti</div>
+				<div class="product-name">Fluid Black Trousers</div>
+				<div class="product-desc">High-waisted trousers with front pleats. Spectacular drape, wide leg. Ideal
+					for a classic minimalist look.</div>
+				<div class="product-details">
+					<div class="product-detail"><span>Size</span><span>S (36)</span></div>
+					<div class="product-detail"><span>Condition</span><span>Immaculate (9.5/10)</span></div>
+					<div class="product-detail"><span>Fabric</span><span>10% Wool, 90% Lyocell</span></div>
+				</div>
+				<div class="price-row">
+					<span class="price-new">€50</span>
+					<span class="price-old">€90</span>
+					<span class="price-save">Save €40</span>
+				</div>
+				<button class="btn-buy" onclick="openModal('Fluid Black Trousers', '50')">Buy This Piece</button>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- ORDER MODAL -->
+	<div class="overlay" id="overlay">
+		<div class="modal" id="modal">
+			<div class="modal-header">
+				<div>
+					<h2 class="modal-title">Complete Your Order</h2>
+					<p class="modal-subtitle">Reserve your piece before it's gone</p>
+				</div>
+				<button class="btn-close" onclick="closeModal()">&times;</button>
+			</div>
+
+			<div class="modal-body">
+				<div id="formContent">
+					<div class="order-summary">
+						<span class="order-summary-name" id="summaryName">Product Name</span>
+						<span class="order-summary-price" id="summaryPrice">€00</span>
+					</div>
+
+					<!-- HIDDEN FIELDS for Formspree -->
+					<input type="hidden" id="hiddenProduct" name="product">
+					<input type="hidden" id="hiddenPrice" name="price">
+					<input type="hidden" id="hiddenTotal" name="total">
+
+					<div class="form-section">
+						<span class="form-section-label">1. Shipping Details</span>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="firstName">First Name *</label>
+								<input type="text" id="firstName" name="firstName" required oninput="validateForm()">
+							</div>
+							<div class="form-group">
+								<label for="lastName">Last Name *</label>
+								<input type="text" id="lastName" name="lastName" required oninput="validateForm()">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email">Email *</label>
+							<input type="email" id="email" name="email" required oninput="validateForm()">
+						</div>
+						<div class="form-group">
+							<label for="phone">Phone *</label>
+							<input type="tel" id="phone" name="phone" placeholder="9xxxxxxxx" required
+								oninput="validateForm()">
+						</div>
+						<div class="form-group">
+							<label for="address">Full Address *</label>
+							<input type="text" id="address" name="address" placeholder="Street, number, floor..."
+								required oninput="validateForm()">
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="postalCode">Postal Code *</label>
+								<input type="text" id="postalCode" name="postalCode" placeholder="1200-000" required
+									oninput="validateForm()">
+							</div>
+							<div class="form-group">
+								<label for="city">City *</label>
+								<input type="text" id="city" name="city" required oninput="validateForm()">
+							</div>
+						</div>
+					</div>
+
+					<div class="divider"></div>
+
+					<div class="form-section">
+						<span class="form-section-label">2. Payment Method</span>
+						<div class="payment-methods">
+							<div class="payment-option">
+								<div class="payment-radio"><span class="payment-dot"></span></div>
+								<div class="payment-info">
+									<div class="payment-name">MB WAY</div>
+									<div class="payment-desc">Order dispatched immediately after payment is confirmed.
+									</div>
+								</div>
+							</div>
+							<div class="payment-detail-box" id="paymentDetails"></div>
+						</div>
+
+						<button class="btn-submit" id="btnSubmit" disabled onclick="submitOrder()">
+							Confirm Order
+						</button>
+						<div class="error-banner" id="errorBanner">
+							Something went wrong. Please try again or contact us directly.
+						</div>
+						<p class="note">By confirming, your piece is reserved for 2 hours until payment is received. You
+							will also receive an email with all the details.</p>
+					</div>
+				</div>
+
+				<div class="success-screen" id="successScreen">
+					<div class="success-icon">&#10003;</div>
+					<h3 class="success-title">Order Reserved!</h3>
+					<p class="success-text">Your piece has been set aside. Complete the MB WAY payment within 2 hours to
+						guarantee shipping.</p>
+					<div class="success-box" id="successBox"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		&copy; 2026 Arché — Selected Pieces. All rights reserved.
+	</footer>
+
+	<script>
+		// ─────────────────────────────────────────────
+		// 🔧 CONFIGURATION — edit these two lines only
+		// ─────────────────────────────────────────────
+		const FORMSPREE_ENDPOINT = "https://formspree.io/f/mlgvjqqd";
+		const MBWAY_NUMBER = "927 177 685";
+		// ─────────────────────────────────────────────
+
+		let selectedProduct = "";
+		let selectedPrice = 0;
+
+		function paymentHTML() {
+			return `<strong>MB WAY payment steps:</strong><br>
+1. Send the total amount to: <strong>${MBWAY_NUMBER}</strong><br>
+2. In the reference/note, write your name and product.<br>
+3. Your order will be dispatched once we receive the notification.`;
+		}
+
+		function openModal(name, price) {
+			selectedProduct = name;
+			selectedPrice = parseFloat(price);
+
+			document.getElementById('summaryName').innerText = name;
+			document.getElementById('summaryPrice').innerText = '€' + price;
+			document.getElementById('paymentDetails').innerHTML = paymentHTML();
+
+			document.getElementById('overlay').classList.add('active');
+			document.body.style.overflow = 'hidden';
+
+			// Reset state
+			document.getElementById('formContent').style.display = 'block';
+			document.getElementById('successScreen').classList.remove('visible');
+			document.getElementById('errorBanner').classList.remove('visible');
+			validateForm();
+		}
+
+		function closeModal() {
+			document.getElementById('overlay').classList.remove('active');
+			document.body.style.overflow = '';
+		}
+
+		// Close on overlay click
+		document.getElementById('overlay').addEventListener('click', function (e) {
+			if (e.target === this) closeModal();
+		});
+
+		function validateForm() {
+			const fields = ['firstName', 'lastName', 'email', 'phone', 'address', 'postalCode', 'city'];
+			const allValid = fields.every(id => document.getElementById(id).value.trim() !== '');
+			document.getElementById('btnSubmit').disabled = !allValid;
+		}
+
+		async function submitOrder() {
+			const btn = document.getElementById('btnSubmit');
+			const error = document.getElementById('errorBanner');
+
+			const firstName = document.getElementById('firstName').value.trim();
+			const lastName = document.getElementById('lastName').value.trim();
+			const email = document.getElementById('email').value.trim();
+			const phone = document.getElementById('phone').value.trim();
+			const address = document.getElementById('address').value.trim();
+			const postalCode = document.getElementById('postalCode').value.trim();
+			const city = document.getElementById('city').value.trim();
+			const total = (selectedPrice + 5.5).toFixed(2);
+
+			btn.disabled = true;
+			btn.textContent = 'Sending…';
+			error.classList.remove('visible');
+
+			// Build form data
+			const payload = {
+				product: selectedProduct,
+				price: '€' + selectedPrice,
+				shipping: '€5.50',
+				total: '€' + total,
+				name: firstName + ' ' + lastName,
+				email: email,
+				phone: phone,
+				address: address + ', ' + postalCode + ' ' + city,
+				payment: 'MB WAY — ' + MBWAY_NUMBER,
+				_subject: '🛍️ New order: ' + selectedProduct + ' — ' + firstName + ' ' + lastName,
+				_replyto: email
+			};
+
+			try {
+				const res = await fetch(FORMSPREE_ENDPOINT, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+					body: JSON.stringify(payload)
+				});
+
+				if (res.ok) {
+					// Show success screen
+					document.getElementById('successBox').innerHTML =
+						'<strong>Product:</strong> ' + selectedProduct + '<br>' +
+						'<strong>Price:</strong> €' + selectedPrice + ' + €5.50 shipping<br>' +
+						'<strong>Total:</strong> €' + total + '<br>' +
+						'<strong>Ship to:</strong> ' + firstName + ' ' + lastName + '<br>' +
+						address + ', ' + postalCode + ' ' + city + '<br><br>' +
+						'<strong>Pay via MB WAY:</strong><br>' + paymentHTML();
+
+					document.getElementById('formContent').style.display = 'none';
+					document.getElementById('successScreen').classList.add('visible');
+					document.getElementById('modal').scrollTop = 0;
+				} else {
+					throw new Error('Bad response');
+				}
+			} catch (err) {
+				error.classList.add('visible');
+				btn.disabled = false;
+				btn.textContent = 'Confirm Order';
+			}
+		}
+
+		// ── GALLERY ──
+		function setSlide(prod, idx) {
+			document.querySelectorAll('.slide[data-prod="' + prod + '"]').forEach((el, i) => {
+				el.classList.toggle('active', i === idx);
+			});
+			document.querySelectorAll('.thumb[data-prod="' + prod + '"]').forEach((el, i) => {
+				el.classList.toggle('active', i === idx);
+				el.style.opacity = i === idx ? '0.9' : '0.45';
+			});
+		}
+
+		function navSlide(prod, direction) {
+			const slides = document.querySelectorAll('.slide[data-prod="' + prod + '"]');
+			let current = 0;
+			slides.forEach((s, i) => { if (s.classList.contains('active')) current = i; });
+			let next = (current + direction + slides.length) % slides.length;
+			setSlide(prod, next);
+		}
+	</script>
+</body>
+
+</html>
